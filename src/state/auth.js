@@ -12,9 +12,9 @@ export const startListeningToAuthChangesAsyncActionCreator = (
                   //USER LOGGED IN
                 } else {
                     //USER NOT LOGGED IN
-                    console.log(user)
-                    dispatch(setUserActionCreator(user))
                 }
+                console.log(user)
+                dispatch(setUserActionCreator(user))
               }
             )
           }
@@ -27,6 +27,12 @@ export const logInAsyncActionCreator = () => (dispatch, getState) => {
     const password = state.auth.password
 
     auth.signInWithEmailAndPassword(email,password)
+    .then(() => console.log('Zalogowano'))
+    .catch((error) => console.log('Wystapil blad', error))
+}
+
+export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
+    auth.signInWithPopup(googleProvider)
     .then(() => console.log('Zalogowano'))
     .catch((error) => console.log('Wystapil blad', error))
 }
