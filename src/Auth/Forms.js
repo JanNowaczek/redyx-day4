@@ -1,7 +1,7 @@
 import React from 'react'
 
-import LogInForm from './LogInForm'
-import LogInByGoogleForm from './LogInByGoogleForm'
+import LogInForm from './LoginForms'
+import LogInByGoogleForm from './LoginByGoogleForm'
 import RegistrationForm from './RegistrationForm'
 
 const Forms = (props) => (
