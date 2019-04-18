@@ -16,7 +16,7 @@ const App = (props) => (
 
 const mapDispatchToProps = dispatch => {
   return {
-    _logOut: () => dispatch(logOut())
+    _logOut: () => dispatch(logOut()),
   }
 }
 
