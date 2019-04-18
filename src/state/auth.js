@@ -14,10 +14,14 @@ export const startListeningToAuthChangesAsyncActionCreator = (
                 if (user) {
                     // USER LOGGED IN
                     dispatch(setUserActionCreator(user))
+                    dispatch(passChangedActionCreator(''))
+                    dispatch(emailChangedActionCreator(''))
                     dispatch(logUserLoginsAsyncActionCreator())
                     dispatch(startListeningUserLoginsLogsAsyncActionCreator())
                 } else {
                     // USER NOT LOGGED IN
+                    dispatch(stopListeningUserLoginsLogsAsyncActionCreator())
+                    dispatch(setUserLoginsLogsActionCreator(null))
                     dispatch(setUserActionCreator(user))
                 }
             }
@@ -28,7 +32,9 @@ export const startListeningToAuthChangesAsyncActionCreator = (
 export const stopListeningUserLoginsLogsAsyncActionCreator =(
     () => (dispatch, getState) => {
         const state = getState()
-        const userId = state.auth.user.uid
+        const userId = state.auth.user && state.auth.user.uid
+
+        if (!userId) return
 
         database.ref(`jfddl7/users/${userId}/login`).off()
     }    
