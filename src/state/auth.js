@@ -37,6 +37,10 @@ export const logInByGoogleAsyncActionCreator = () => (dispatch, getState) => {
     .catch((error) => console.log('Wystapil blad', error))
 }
 
+export const logOut = () => (dispatch, getState) => {
+    auth.signOut()
+}
+
 const setUserActionCreator = user => ({
     type: SET_USER,
     user,
