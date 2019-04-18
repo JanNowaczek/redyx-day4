@@ -10,9 +10,24 @@ const App = (props) => (
     >
       LOG OUT
     </button>
-    SECRET CONTENT
+      {
+        Object.entries(props._userLoginsLogs || {})
+          .map(
+            ([key, value]) => (
+              <div
+                key={key}
+              >
+                {value.timestamp}
+              </div>
+            ) 
+          )
+      }
   </div>
 )
+
+const mapStateToProps = state => ({
+  _userLoginsLogs: state.auth.userLoginsLogs,
+})
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -21,6 +36,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect (
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App)
